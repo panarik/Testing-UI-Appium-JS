@@ -8,13 +8,17 @@ setHeadlessWhen(process.env.HEADLESS);
 setCommonPlugins();
 
 exports.config = {
-  tests: './*_test.js',
+  tests: './tests/*_test.js',
   output: './output',
   helpers: {
     Appium: {
-      app: 'http://localhost',
       platform: 'Android',
-      device: '83209d47'
+      desiredCapabilities: {
+        // appPackage: 'io.onesoil.scouting.staging',
+        // appActivity: 'io.onesoil.scouting.MainActivity',
+        deviceName: 'RedmiNote9',
+        platformVersion: '11'
+      }
     }
   },
   include: {
