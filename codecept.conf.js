@@ -9,7 +9,7 @@ setCommonPlugins();
 
 exports.config = {
   tests: './tests/*_test.js',
-  output: './output',
+  output: './.output',
   helpers: {
     Appium: {
       platform: 'Android',
@@ -17,7 +17,11 @@ exports.config = {
         // appPackage: 'io.onesoil.scouting.staging',
         // appActivity: 'io.onesoil.scouting.MainActivity',
         deviceName: 'RedmiNote9',
-        platformVersion: '11'
+        platformVersion: '11',
+        reset: 'true', // by default
+        unlockType: 'pin',
+        unlockKey: '1111',
+        autoGrantPermissions: 'true'
       }
     }
   },

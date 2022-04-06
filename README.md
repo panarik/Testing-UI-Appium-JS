@@ -4,4 +4,5 @@
 3. npx codecept init
 
 # Run
-npx codeceptjs run --steps
+Full run: `npx codeceptjs run --steps`
+Run one test: `npx codeceptjs run --grep 'test name'`
