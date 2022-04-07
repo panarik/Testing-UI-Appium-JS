@@ -9,4 +9,4 @@ Scenario('Service - Install and open app', ({ I }) => {
     I.openNotifications(); // Open notifications panel.
     let settings = I.grabSettings();
     console.log(settings)
-});
+}).tag('@install');
