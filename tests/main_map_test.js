@@ -1,6 +1,6 @@
 Feature('MainMap');
 
-Scenario('MainMap - Search first field', ({ I, onboarding_page }) => {
+Scenario('MainMap - Search first field', async ({ I, onboarding_page }) => {
     onboarding_page.runOnboarding();
 
     //Search London.
@@ -19,10 +19,20 @@ Scenario('MainMap - Search first field', ({ I, onboarding_page }) => {
 
     I.wait(5) // Wait 5 sec.
 
-    //tap to center
-    I.performSwipe({ x: 300, y: 1300 }, { x: 300, y: 300 });
+    //tap to center of map
+    const value = await I.grabElementBoundingRect('//android.widget.FrameLayout[@content-desc="Showing a Map created with Mapbox. Scroll by dragging two fingers. Zoom by pinching two fingers."]');
+    const sourceX = (parseInt(value['x']) + parseInt(value['width']) / 2) + 100;
+    const sourceY = (parseInt(value['y']) + parseInt(value['height']) / 2) - 100;
+    I.touchPerform([{
+        action: 'tap',
+        options: {
+            x: sourceX,
+            y: sourceY,
+            count: 1
+        }
+    }]);
+
     pause();
 
-    I.swipe('//android.widget.FrameLayout[@content-desc="Showing a Map created with Mapbox. Scroll by dragging two fingers. Zoom by pinching two fingers."]', 800, 400, 1000);
-
+    I.performSwipe({ x: 300, y: 1300 }, { x: 300, y: 300 });
 });
