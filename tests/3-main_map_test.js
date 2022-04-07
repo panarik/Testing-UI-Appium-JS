@@ -1,6 +1,6 @@
 Feature('3-main_map');
 
-Scenario('3-MainMap - Search first field', async ({ I, onboarding_page, main_page }) => {
+Scenario('3-MainMap - Search first field', async ({ I, main_page }) => {
     
     // Prestep.
     main_page.open_map();
@@ -17,4 +17,7 @@ Scenario('3-MainMap - Search first field', async ({ I, onboarding_page, main_pag
     // Step 2.2: Tap on first field.
     main_page.tapOnCenterWithParam(0, 0);
 
-});
+    // Step 3: Add this field with custom name and check it.
+    main_page.addCurrentField('MyField');
+
+}).tag('@main');

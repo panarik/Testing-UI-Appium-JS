@@ -19,7 +19,7 @@ module.exports = {
     I.startActivity(this.fields.app_package, this.fields.app_activity);
     I.seeCurrentActivityIs(this.fields.app_activity);
     I.waitForElement(this.fields.logo);
-    I.waitForInvisible(this.fields.logo, 15);
+    I.waitForInvisible(this.fields.logo, 20);
     I.see('Monitor your fields');
     I.tap('NEXT');
     I.waitForElement('Add notes', 5);

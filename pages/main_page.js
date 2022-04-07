@@ -10,10 +10,13 @@ module.exports = {
         search_bottomsheet_field: '//android.widget.EditText[@text="Search for a field or location"]',
         search_bottomsheet_anchor: '//android.widget.TextView[contains(@text, "coordinates")]',
         search_bottomsheet_first_result: '//android.widget.SeekBar[@content-desc="Bottom Sheet handle, Drag up or down to extend or minimize the Bottom Sheet"]/../android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]', //nearest anchor without text
+        bottomsheet_addfield_button: '//android.widget.TextView[@text="Add to your fields"]',
+        bottomsheet_safefield_button: '//android.widget.TextView[@text="S A V E"]'
     },
 
     open_map() {
         I.startActivity(this.fields.app_package, this.fields.app_activity);
+        I.waitForElement(this.fields.logo);
         I.waitForInvisible(this.fields.logo, 15);
         I.waitForElement(this.fields.search_bottomsheet_field);
     },
@@ -29,6 +32,15 @@ module.exports = {
         for (let i = 0; i < count; i++) {
             I.tap('//android.view.ViewGroup[@resource-id="zoom-in-button"]');
         }
+    },
+
+    addCurrentField(name) {
+        I.waitForElement(this.fields.bottomsheet_addfield_button, 5);
+        I.tap(this.fields.bottomsheet_addfield_button);
+        I.waitForElement('//android.widget.EditText[@text="Field 1"]', 2);
+        I.fillField('//android.widget.EditText[@text="Field 1"]', name);
+        I.tap(this.fields.bottomsheet_safefield_button);
+        I.waitForElement('//android.widget.SeekBar[@content-desc="Bottom Sheet"]/../android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[@text="' + name + '"]', 3);
     },
 
     async tapOnCenterWithParam(x, y) {
