@@ -6,8 +6,8 @@ module.exports = {
     logo: '//android.widget.ImageView[@content-desc="OneSoil logo"]',
     permission_geo_allow: '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_foreground_only_button"]',
     main_map: '//android.widget.FrameLayout[@content-desc="Showing a Map created with Mapbox. Scroll by dragging two fingers. Zoom by pinching two fingers."]',
+    main_search: '//android.widget.EditText[@text="Search for a field or location"]'
   },
-
 
   runOnboarding() {
     I.startActivity('io.onesoil.scouting.staging', 'io.onesoil.scouting.MainActivity');
@@ -24,6 +24,8 @@ module.exports = {
     I.waitForElement(this.fields.permission_geo_allow, 3);
     I.tap('WHILE USING THE APP'); // Allow GEO
     I.waitForElement(this.fields.main_map, 5);
+    I.tap('Skip tutorial');
+    I.waitForElement(this.fields.main_search, 3);
   }
 
 }

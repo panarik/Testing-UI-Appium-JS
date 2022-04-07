@@ -21,7 +21,9 @@ exports.config = {
         reset: 'true', // by default
         unlockType: 'pin',
         unlockKey: '1111',
-        autoGrantPermissions: 'true'
+        autoGrantPermissions: 'true', // for allow permissions
+        newCommandTimeout: 120, // DEBUG.
+        // fullReset: 'true'
       }
     }
   },
