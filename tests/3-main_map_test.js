@@ -1,11 +1,9 @@
-Feature('MainMap');
+Feature('3-main_map');
 
-Scenario('MainMap - Search first field', async ({ I, onboarding_page, main_page }) => {
+Scenario('3-MainMap - Search first field', async ({ I, onboarding_page, main_page }) => {
     
-    
-
     // Prestep.
-    onboarding_page.runOnboarding();
+    main_page.open_map();
 
     // Step 1: Search London.
     main_page.search('London');

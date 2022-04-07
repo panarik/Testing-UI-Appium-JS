@@ -14,14 +14,15 @@ module.exports = {
   },
 
   runOnboarding() {
-    I.removeApp(this.fields.app_name, this.fields.app_package);
-    I.installApp(this.fields.app_location);
-    I.startActivity(this.fields.app_package, app_activity);
-    I.seeCurrentActivityIs('io.onesoil.scouting.MainActivity');
-    I.waitForInvisible(this.fields.logo, 15); // locator by xpath
-    I.see('Monitor your fields'); // locator by text
+
+    //ToDo: should use fullReset: 'true'
+    I.startActivity(this.fields.app_package, this.fields.app_activity);
+    I.seeCurrentActivityIs(this.fields.app_activity);
+    I.waitForElement(this.fields.logo);
+    I.waitForInvisible(this.fields.logo, 15);
+    I.see('Monitor your fields');
     I.tap('NEXT');
-    I.waitForElement('Add notes', 5); // Wait 5 sec.
+    I.waitForElement('Add notes', 5);
     I.tap('NEXT');
     I.waitForElement('Vegetation index updates');
     I.tap('Not now');
@@ -32,6 +33,12 @@ module.exports = {
     I.waitForElement(this.fields.main_map, 5);
     I.tap('Skip tutorial');
     I.waitForElement(this.fields.main_search, 3);
+  },
+
+  installApp() {
+    I.seeAppIsNotInstalled('io.onesoil.scouting.staging');
+    I.installApp('C:/Users/user/Documents/PROJECTS/JSAppiumTests/resources/app-staging.apk');
+    I.seeAppIsInstalled('io.onesoil.scouting.staging');
   }
 
 }
